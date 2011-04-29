@@ -69,7 +69,7 @@ public class Main extends PApplet {
 		// OBJ, X POS, YPOS
 		// new SpaceShip model is instantiated and given params
 		mySpaceShip = new Spaceship(this, 2, 20);
-		// Asteroids are created
+		// Asteroids,lasers, and Messages are created
 		asteroids = new ArrayList<Asteroid>();
 		lasers = new ArrayList<Projectile>();
 		messages = new ArrayList<FloatingMessage>();
@@ -121,6 +121,7 @@ public class Main extends PApplet {
 		boundsCheck();
 		
 		if(isLevelClear()){
+
 			startLevel(level+1);
 			FloatingMessage levelMessage = new FloatingMessage(this, 
 					"LEVEL UP!", Color.YELLOW, 30, 3000, mySpaceShip.position);
