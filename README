@@ -3,4 +3,8 @@ Hunter Glass
 CSC 2310 M,W 5:30-6:45
 Asteroids Project
 
-To run the jar, use java -jar <AsteroidsProject.jar>
+This Project is a clone of the Asteroids Video Game.
+To run the jar, use java -jar <AsteroidsProject.jar>, 
+then press any key to begin playing.
+The Spacebar fires lasers, movement is controlled via 
+the arrow keys, p pauses the game, and escape exits the game.
