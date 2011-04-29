@@ -47,7 +47,8 @@ public class Spaceship {
 	//smooth and spacelike 
 	public void update(long elapsedTimeMillis) {
 		float elapsedTimeSeconds = elapsedTimeMillis / 1000.0f;
-		PVector thrustVector = new PVector(thrust * (float)Math.cos(Math.toRadians(angle)),
+		PVector thrustVector = new PVector(thrust * 
+				(float)Math.cos(Math.toRadians(angle)),
 				                           thrust * (float)Math.sin(Math.toRadians(angle)));
 		
 		thrustVector.mult(elapsedTimeSeconds);
@@ -85,9 +86,12 @@ public class Spaceship {
 	public void draw() {
 		//This is mainly for debugging, but also add flavor to the program
 		parent.color(0,0,0);
-		parent.text(String.format("POSITION: X: %10.4f Y: %10.4f", position.x, position.y), 0, 20);
-		parent.text(String.format("THRUST:   T: %10.1f A: %10.1f", thrust, angle), 0, 40);
-		parent.text(String.format("MOMENTUM: X: %10.4f Y: %10.4f M: %10.4f", momentum.x, momentum.y, momentum.mag()), 0 , 60);
+		parent.text(String.format("POSITION: X: %10.4f Y: %10.4f", 
+				position.x, position.y), 0, 20);
+		parent.text(String.format("THRUST:   T: %10.1f A: %10.1f", thrust,
+				angle), 0, 40);
+		parent.text(String.format("MOMENTUM: X: %10.4f Y: %10.4f M: %10.4f",
+				momentum.x, momentum.y, momentum.mag()), 0 , 60);
 		//Sets invulnerability color
 		if(isInvulnerable()){
 			parent.fill(0, 0, 255);
@@ -116,13 +120,13 @@ public class Spaceship {
     		this.invulnerabilityTime = futureTimestamp;
     
     }
-    
+    //For Getting Time left for invulnerability 
     public long getInvulnerableTimeRemaining() {
     	if(isInvulnerable())
     		return invulnerabilityTime - System.currentTimeMillis();
     	return 0;
     }
-    
+    //Checks if invulnerable
     public boolean isInvulnerable(){
     	if(System.currentTimeMillis() < this.invulnerabilityTime)
     		return true;
@@ -130,4 +134,3 @@ public class Spaceship {
     }
 		
 }
-
