@@ -35,7 +35,11 @@ With help and ideas from http://processing.org/
 AND
 http://www.blindfish.co.uk/code/processing/asteroids02/
 
+Sorry for the long main file!
 */
+//P.S: If the man who grades these projects could email me at hglass1@student.gsu.edu,
+//I would appreciate it, I have a few Java industry related questions.
+
 
 @SuppressWarnings("serial")
 public class Main extends PApplet {
@@ -78,7 +82,7 @@ public class Main extends PApplet {
 		startLevel(1);
 		pause();
 	}
-	
+	//Starts the level with an invulnerable spaceship
 	public void startLevel(int level){
 		this.level = level;
 		//Clear all objects
@@ -95,7 +99,7 @@ public class Main extends PApplet {
 		
 		lastUpdateTime = System.currentTimeMillis();
 	}
-	
+	//responsible for udating laser, ships, asteroids
 	public void update(){
 		long timeSinceLastUpdate = System.currentTimeMillis() - lastUpdateTime;
 		processMovementKeys(timeSinceLastUpdate);
@@ -108,7 +112,7 @@ public class Main extends PApplet {
 		for (Projectile laser : lasers) {
 			laser.update(timeSinceLastUpdate);
 		}
-		
+		//responsible for managing the floating messages
 		ArrayList<FloatingMessage> destroyMessages = 
 								new ArrayList<FloatingMessage>();
 		for (FloatingMessage message : messages) {
@@ -119,7 +123,7 @@ public class Main extends PApplet {
 		messages.removeAll(destroyMessages);
 
 		boundsCheck();
-		
+		//For level completion and level up
 		if(isLevelClear()){
 
 			startLevel(level+1);
@@ -128,7 +132,7 @@ public class Main extends PApplet {
 				levelMessage.setMomentum(new PVector(0,0.2f));
 				messages.add(levelMessage);
 		}
-		
+		//Game over controller
 		if(mySpaceShip.shipLives < 1){
 			pause();
 			displayGameOverScreen = true;
@@ -144,7 +148,7 @@ public class Main extends PApplet {
 
 		background(128);
 		
-		//Draw all objects
+		//Draw all objects, for each loops are great!
 		mySpaceShip.draw();
 		for (Asteroid curAsteroid : asteroids) {
 			curAsteroid.draw();
@@ -164,7 +168,7 @@ public class Main extends PApplet {
 		lastUpdateTime = System.currentTimeMillis();
 		
 	}
-	
+	//responsible for User Interface things
 	public void drawUserInterface(){
 		
 		// displays player score, hp, and lives on screen
@@ -179,7 +183,7 @@ public class Main extends PApplet {
 				mySpaceShip.shipHealth, mySpaceShip.shipLives),
 				0, screenHeight - 30);
 		textSize(15);
-		
+		//Pauses the game
 		if(gamePaused){
 			int midX = width / 2;
 			int midY = height / 2;
@@ -194,7 +198,7 @@ public class Main extends PApplet {
 			textAlign(LEFT);
 			textSize(15);
 		}
-		
+		//Shows a pseudo-flash screen
 		if(displaySplashScreen) {
 			int midX = width / 2;
 			int midY = height / 2;
@@ -217,7 +221,7 @@ public class Main extends PApplet {
 			textAlign(LEFT);
 			textSize(15);
 		}
-		
+		//shows gameover screen
 		if(displayGameOverScreen) {
 			int midX = width / 2;
 			int midY = height / 2;
@@ -318,6 +322,7 @@ public class Main extends PApplet {
 		int asteroidBounds;
 		for (Asteroid asteroid : asteroids) {
 			asteroidBounds = asteroid.size * 20 / 2;
+			//Bounds checking
 			if (Math.abs(asteroid.locationX - mySpaceShip.position.x) < 
 					(shipBounds + asteroidBounds)&& Math.abs(asteroid.locationY 
 							- mySpaceShip.position.y) < (shipBounds + asteroidBounds)
@@ -326,7 +331,8 @@ public class Main extends PApplet {
 				// and lives as needed, also invulnerability time is set
 				mySpaceShip.setInvulnerable(3000);
 				mySpaceShip.shipHealth -= 50;
-				
+				//Controls ship health and life attributes, displays respected message
+				//-1 life for 0 hp, -50hp for hitting asteroid
 				if (mySpaceShip.shipHealth <= 0) {
 					mySpaceShip.shipHealth = 100;
 					mySpaceShip.shipLives -= 1;
@@ -348,7 +354,7 @@ public class Main extends PApplet {
 		asteroids.addAll(asteroidsToCreate);
 		lasers.removeAll(lasersToKill);
 	}
-	
+	//For level clearing
 	public boolean isLevelClear(){
 		if(asteroids.size() <= 0){
 			//+300 points on level completeion
