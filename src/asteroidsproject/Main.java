@@ -31,6 +31,10 @@ is created. Floating messages are finally displayed here. Ability to pause and r
 are established. Keystrokes are read using KeyEvents. All args are sent to the
 proessing PApplet.
 
+With help and ideas from http://processing.org/
+AND
+http://www.blindfish.co.uk/code/processing/asteroids02/
+
 */
 
 @SuppressWarnings("serial")
